@@ -14,8 +14,6 @@ class JobList extends StatefulWidget
 
 }
 class JobsListState extends State<JobList> {
-  Future<JobListShowItem> joblistshowite;
-
   @override
   void initState() {
     // TODO: implement initState
@@ -23,12 +21,18 @@ class JobsListState extends State<JobList> {
     getuser();
   }
 
-  Future<JobListShowItem> getuser() async
+  Future<List<JobListShowItem>> getuser() async
   {
     var url = 'https://randomuser.me/api/?page=3&results=10&seed=abc';
-    var response = await http.get(
-        Uri.encodeFull(url), headers: {"Accept": "application/json"});
-        return JobListShowItem.fromJson(json.decode(response.body));
+    var response = await http.get(Uri.encodeFull(url), headers: {"Accept": "application/json"});
+    var Jsondata = json.decode(response.body);
+    List<JobListShowItem>_list=[];
+    for(var u in Jsondata)
+    {
+      JobListShowItem j=JobListShowItem(u['title'],u['first']);
+      _list.add(j);
+    }
+    return _list;
    
   }
 
@@ -36,18 +40,16 @@ class JobsListState extends State<JobList> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new FutureBuilder<JobListShowItem>(
-      future: joblistshowite,
-      builder:(context,snapshat){
-        if(snapshat.hasError)
-        {
-
-        }
-        if(snapshat.hasData)
-        {
-          return new Text(snapshat.data.Lastname.toString());
-        }
-    },);
+    return new FutureBuilder(future: getuser(),
+    builder:(BuildContext context,snapshat) 
+    {
+      return new ListView.builder(itemCount:snapshat.data.lenght,
+      itemBuilder:(BuildContext context,int index){
+         return new ListTile(title: new Text(snapshat.data[index].name));
+      } ,
+      );
+    }
+    );
   }
 }
 
