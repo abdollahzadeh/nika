@@ -36,14 +36,16 @@ class JobsListState extends State<JobList> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new FutureBuilder<JobListShowItem>(future: joblistshowite,builder:(context,snapshat){
+    return new FutureBuilder<JobListShowItem>(
+      future: joblistshowite,
+      builder:(context,snapshat){
         if(snapshat.hasError)
         {
 
         }
         if(snapshat.hasData)
         {
-          return new Text(snapshat.data.Lastname);
+          return new Text(snapshat.data.Lastname.toString());
         }
     },);
   }
