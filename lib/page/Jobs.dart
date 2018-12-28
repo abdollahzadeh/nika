@@ -57,8 +57,3 @@ class JobsListState extends State<JobList> {
 
   }
 }
-
-
-  //*return new ListView.builder(itemCount: Mylist.length,itemBuilder:(BuildContext context,int Pos){
-     //  return new ListTile(title: new Text(Mylist[Pos]['body'].toString()));
-    //});
