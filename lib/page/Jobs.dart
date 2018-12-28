@@ -43,12 +43,13 @@ class JobsListState extends State<JobList> {
     return new FutureBuilder<List<JobListShowItem>>(future:getuser(),builder:(BuildContext context,snapshat){
       if(snapshat.data == null)
         {
-          return new Container(child: new Center(child: new Text('loading.....')));
+          return new Container(child: new Center(child: new Text('کمی صبر نماید')));
         }
        else {
         return new ListView.builder(itemCount:snapshat.data.length,
             itemBuilder: (BuildContext context, int index) {
-              return new ListTile(title: new Text(snapshat.data[index].Lastname));
+              return new ListTile(title: new Text(snapshat.data[index].Lastname,textDirection: TextDirection.rtl),
+              subtitle: new Text(snapshat.data[index].Name,textDirection: TextDirection.rtl),);
             });
       }
        
