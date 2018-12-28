@@ -1,14 +1,12 @@
 //Start Class JoblistShow
 
 import 'dart:io';
+import 'dart:convert';
 class JobListShowItem
 {
    String Name;
    String Lastname;
-  JobListShowItem(String lastname,String name)
-  {
-     this.Lastname = lastname;
-     this.Name = name;
-  }
+  JobListShowItem({this.Lastname,this.Name});
+
   
 }

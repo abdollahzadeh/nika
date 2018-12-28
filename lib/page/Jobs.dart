@@ -14,6 +14,7 @@ class JobList extends StatefulWidget
 
 }
 class JobsListState extends State<JobList> {
+  
   @override
   void initState() {
     // TODO: implement initState
@@ -21,22 +22,43 @@ class JobsListState extends State<JobList> {
     getuser();
   }
 
-  Future<String>getuser() async
+  Future<List<JobListShowItem>> getuser() async
   {
-    var url ='https://jsonplaceholder.typicode.com/todos/1';
-     var response =await http.get(url);
-     print(response.statusCode.toString());
-     return 'gg';
-   
+     List<JobListShowItem> item=[];
+     final response = await http.get(Uri.decodeFull('https://jsonplaceholder.typicode.com/posts'));
+     
+            var data =json.decode(response.body);
+            for(var i in data)
+              {
+                JobListShowItem y = new JobListShowItem(Lastname: i['title'],Name: i['body']);
+                item.add(y);
+              }
+            return item;
+          
   }
 
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new Text('cffff');
+    return new FutureBuilder<List<JobListShowItem>>(future:getuser(),builder:(BuildContext context,snapshat){
+      if(snapshat.data == null)
+        {
+          return new Container(child: new Text('fffff'),);
+        }
+       else {
+        return new ListView.builder(itemCount:snapshat.data.length,
+            itemBuilder: (BuildContext context, int index) {
+              return new ListTile(title: new Text(snapshat.data[index].Lastname));
+            });
+      }
+       
+    });
+
   }
 }
 
 
-  
+  //*return new ListView.builder(itemCount: Mylist.length,itemBuilder:(BuildContext context,int Pos){
+     //  return new ListTile(title: new Text(Mylist[Pos]['body'].toString()));
+    //});
