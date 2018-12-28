@@ -43,7 +43,7 @@ class JobsListState extends State<JobList> {
     return new FutureBuilder<List<JobListShowItem>>(future:getuser(),builder:(BuildContext context,snapshat){
       if(snapshat.data == null)
         {
-          return new Container(child: new Text('fffff'),);
+          return new Container(child: new Center(child: new Text('loading.....')));
         }
        else {
         return new ListView.builder(itemCount:snapshat.data.length,
