@@ -6,7 +6,8 @@ class JobListShowItem
 {
    String Name;
    String Lastname;
-  JobListShowItem({this.Lastname,this.Name});
+   String Image;
+  JobListShowItem({this.Lastname,this.Name,this.Image});
 
   
 }
