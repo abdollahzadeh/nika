@@ -26,7 +26,6 @@ class JobsListState extends State<JobList> {
   {
      List<JobListShowItem> item=[];
      final response = await http.get(Uri.decodeFull('https://jsonplaceholder.typicode.com/posts'));
-     
             var data =json.decode(response.body);
             for(var i in data)
               {
