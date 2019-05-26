@@ -13,7 +13,7 @@ class ActivityState extends State <Activity>
 
   @override
   Widget build(BuildContext context) {
-    return new DefaultTabController(length: 8,initialIndex: 1, child:
+    return new DefaultTabController(length: 5,initialIndex: 1, child:
         Scaffold(appBar:new AppBar(
           title: new Text('نیکا بروز',style: new TextStyle(fontFamily: 'Vazir'),),
           centerTitle: true,
