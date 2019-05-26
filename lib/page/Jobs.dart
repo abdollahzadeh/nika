@@ -53,7 +53,7 @@ class JobsListState extends State<JobList> {
               subtitle: new Text(snapshat.data[index].Name,textDirection: TextDirection.rtl),);
             });
       }
-       
+      
     });
 
   }
